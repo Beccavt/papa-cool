@@ -13,24 +13,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const sfxWin = document.getElementById("sfxWin");
 
   // volume
-  if(bgMusic) bgMusic.volume = 0.01;
-  if(letterMusic) letterMusic.volume = 0.04;
+  function setVolumes(){
+  if (bgMusic) bgMusic.volume = 0.01;
+  if (letterMusic) letterMusic.volume = 0.04;
 
-  if(sfxMove) sfxMove.volume = 0.48;
-  if(sfxOpen) sfxOpen.volume = 0.32;
-  if(sfxEnvelope) sfxEnvelope.volume = 0.48;
-  if(sfxWin) sfxWin.volume = 0.48;
+  if (sfxMove) sfxMove.volume = 0.48;
+  if (sfxOpen) sfxOpen.volume = 0.32;
+  if (sfxEnvelope) sfxEnvelope.volume = 0.48;
+  if (sfxWin) sfxWin.volume = 0.48;
+}
 
-    // start music after first click (iphone safe)
-  function startBG(){
+// start music after first click (iphone safe)
+function startBG(){
+  setVolumes();
 
-  setVolumes(); // make sure phone applies volume
+  // iPhone helpers (safe + harmless on desktop)
+  if (bgMusic){
+    bgMusic.muted = false;
+    bgMusic.playsInline = true;
+  }
+  if (letterMusic){
+    letterMusic.muted = false;
+    letterMusic.playsInline = true;
+  }
+
   safePlay(bgMusic);
+}
 
-  }
-  }
+// pointerdown works for mouse + touch
+window.addEventListener("pointerdown", startBG, { once: true });
 
-  window.addEventListener("pointerdown", startBG, { once:true });
+// EXTRA safety for older iOS Safari (optional but recommended)
+window.addEventListener("touchstart", startBG, { once: true, passive: true });
 
   // music toggle
   if(musicBtn){
