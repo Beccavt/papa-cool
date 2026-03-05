@@ -1,0 +1,430 @@
+/* =========================
+   POP COOL (EARLY 2000s FLAT)
+   ========================= */
+
+:root{
+  /* ✅ CUSTOMIZE COLORS */
+  --bg: #2e3b7c;          /* page background */
+  --panel: #e6e6e6;       /* light gray panels */
+  --panel2: #ffffff;      /* white panels */
+  --border: #000000;      /* hard border */
+  --text: #000000;
+
+  --tile: 52px;           /* tile size desktop */
+  --gap: 8px;             /* gap between tiles */
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  width: 100%;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: Titan One, Roboto, sans-serif;
+  background-color:#2e3b7c;
+  background-size:20px 20px;
+  color: var(--text);
+
+  /* ✅ iPhone centering + prevent left squish */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ===== Header ===== */
+.topbar{
+  background: var(--panel);
+  border-bottom: 3px solid var(--border);
+  padding: 10px;
+}
+
+.brand{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  align-items:center;
+  gap:20px;
+}
+
+/* ✅ CUSTOMIZE: make logo huge */
+.logo{
+  width: 150px;
+  height: 150px;
+  object-fit:contain;
+
+  transform:scale(1.8);
+  
+}
+
+/* Title centered like you asked */
+.title-box{
+  background:#ffffff;
+  border:3px solid black;
+  padding:12px;
+  text-align:center;
+
+  /* move title slightly left */
+  margin-right:150px;
+
+  /* iPhone / small screens fix */
+@media (max-width:650px){
+
+  .title-box{
+    margin-right:0;
+    width:100%;
+  }
+
+}
+}
+
+.site-title{
+  margin: 0;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.site-subtitle{
+  margin: 6px 0 0 0;
+  font-size: 14px;
+}
+
+.music-btn{
+  position: absolute;
+
+  /* place under envelope */
+  top: 110px;
+  right: 12px;
+
+  border: 6px solid var(--border);
+  background:#d9f0ff;
+  font-size:20px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+
+/* Envelope button (top right) */
+.envelope-btn{
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  border: 6px solid var(--border);
+  background: #e6e1c9;
+  color: #000;
+  font-size: 34px;
+  font-weight: 900;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+
+.envelope-btn:active{
+  transform: translateY(1px);
+}
+
+/* ===== Layout ===== */
+.layout{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 10px 40px;
+}
+
+.instructions{
+  text-align:center;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;  
+  text-underline-offset: 15px; 
+
+}
+.key{
+  display:inline-block;
+
+  padding:4px 8px;
+  margin:2px;
+
+  background:white;
+  border:2px solid black;
+  border-radius:4px;
+
+  font-weight:bold;
+  font-size:14px;
+
+  box-shadow:2px 2px 0px black;
+}
+/* ===== Game container centered ===== */
+.maze-card{
+  width: min(940px, 95vw);
+  background: var(--panel);
+  border: 3px solid var(--border);
+  padding: 12px;
+}
+
+/* Keep a simple header for the maze */
+.maze-header{
+  background: var(--panel2);
+  border: 3px solid var(--border);
+  padding: 10px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.maze-title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.maze-mini{
+  margin: 6px 0 0 0;
+  font-size: 14px;
+}
+
+/* Board frame */
+.board-frame{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+
+  /* IMPORTANT: stops weird iPhone overflow */
+  box-sizing: border-box;
+}
+
+/* Board grid */
+.board{
+  position: relative;
+  display: grid;
+  gap: var(--gap);
+
+  /* IMPORTANT: this is cleaner than justify-content for scrolling boards */
+  width: max-content;
+  margin: 0 auto;
+}
+
+/* Tiles */
+.tile{
+  width: var(--tile);
+  height: var(--tile);
+  border: 3px solid var(--border);
+  background: #cfcfcf;
+}
+
+/* Wall */
+.tile.wall{
+  background: #666666;
+}
+
+/* Gift tiles (different solid colors, no transparency) */
+.tile.memory.g1{ background: #ff66cc; }
+.tile.memory.g2{ background: #66ccff; }
+.tile.memory.g3{ background: #66ff99; }
+.tile.memory.g4{ background: #ffcc66; }
+.tile.memory.g5{ background: #cc99ff; }
+
+/* End tile */
+.tile.end{
+  background: #ffd800;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+/* Avatar */
+.avatar{
+  position:absolute;
+
+  /* bigger than the tile */
+  width:calc(var(--tile) * 1.4);
+  height:calc(var(--tile) * 1.4);
+
+  /* remove border box */
+  border:none;
+
+  background:url("../img/dad-avatar.png") center bottom no-repeat;
+  background-size:contain;
+
+  pointer-events:none;
+
+  transform:translate(-50%, -50%);
+
+  
+}
+
+/* Mobile controls: show only on small screens */
+.controls{
+  display: none;
+  justify-items: center;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.ctrl-row{
+  display: flex;
+  gap: 8px;
+}
+
+.ctrl-btn{
+  width: 64px;
+  height: 44px;
+  border: 3px solid var(--border);
+  background: var(--panel2);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.ctrl-action{
+  background: #ffd800;
+}
+
+/* Responsive tile size */
+@media (max-width: 650px){
+  :root{
+    --tile: 42px;
+    --gap: 6px;
+  }
+  .controls{ display: grid; }
+  .brand{ grid-template-columns: 95px 1fr; }
+  .logo{ width: 90px; height: 90px; }
+  .site-title{ font-size: 22px; }
+}
+
+/* ===== Modals (flat) ===== */
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: none;
+  z-index: 50;
+}
+
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 60;
+  padding: 12px;
+}
+
+.modal-inner{
+  width: min(720px, 96vw);
+  background: var(--panel2);
+  border: 3px solid var(--border);
+  padding: 14px;
+  position: relative;
+  color: #000;
+}
+
+.modal-close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 3px solid var(--border);
+  background: #ff6666;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.modal-title{
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.modal-caption{
+  margin: 0 0 10px 0;
+}
+
+.modal-media{
+  border: 3px solid var(--border);
+  padding: 8px;
+  background: #f2f2f2;
+}
+
+/* ✅ Make video/image fill the modal nicely */
+.modal-media{
+  width: 100%;
+}
+
+.modal-media video{
+  width: 100%;
+  height: auto;
+  max-height:70vh;
+  object-fit:contain;  display: block;
+  background: #000;     /* fine as a fallback */
+  object-fit: contain;  /* prevents weird cropping */
+}
+
+.modal-media img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ✅ Responsive video frame - prevents skinny black bar */
+.video-wrap{
+  width: 100%;
+  position: relative;
+  padding-top: 56.25%;   /* 16:9 */
+  background: #000;
+  border: 3px solid var(--border);
+}
+
+.video-wrap video{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* show states */
+.modal.show{ display: grid; }
+.modal-backdrop.show{ display: block; }
+
+/* =========================
+   FALLING CONFETTI
+   ========================= */
+
+@keyframes confettiFall {
+
+  0%{
+    transform: translateY(-20px) rotate(0deg);
+    opacity:1;
+  }
+
+  100%{
+    transform: translateY(100vh) rotate(360deg);
+    opacity:0;
+  }
+
+}
+
+.confetti{
+  position:fixed;
+  top:-20px;
+
+  /* ✅ allow JS to control size + speed */
+  border-radius:4px;
+
+  z-index:9999;
+  pointer-events:none;
+}
+
+@media (max-width:480px){
+  :root{
+    --tile: 30px;
+    --gap: 4px;
+  }
+}
