@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sfxEnvelope) sfxEnvelope.volume = 0.48;
   if (sfxWin) sfxWin.volume = 0.48;
 }
+document.addEventListener("DOMContentLoaded", () => {
 
 // start music after first click (iphone safe)
 function startBG(){
@@ -45,6 +46,7 @@ window.addEventListener("pointerdown", startBG, { once: true });
 
 // EXTRA safety for older iOS Safari (optional but recommended)
 window.addEventListener("touchstart", startBG, { once: true, passive: true });
+});
 
   // music toggle
   if(musicBtn){
