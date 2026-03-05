@@ -21,9 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if(sfxEnvelope) sfxEnvelope.volume = 0.48;
   if(sfxWin) sfxWin.volume = 0.48;
 
-  // start music after first click (iphone safe)
+    // start music after first click (iphone safe)
   function startBG(){
-    safePlay(bgMusic);
+
+  setVolumes(); // make sure phone applies volume
+  safePlay(bgMusic);
+
+  }
   }
 
   window.addEventListener("pointerdown", startBG, { once:true });
