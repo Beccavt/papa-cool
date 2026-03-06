@@ -77,6 +77,10 @@ button,
   min-width:0;
 }
 
+.title-box:hover{
+  transform:scale(1.08);
+}
+
 .site-title{
   margin:0;
   font-size:34px;
@@ -109,11 +113,14 @@ button,
   font-size:24px;
   font-weight:900;
   padding:10px 12px;
-  cursor:pointer;
 }
 
 .envelope-btn:active{
   transform:translateY(1px);
+}
+
+.envelope-btn:hover{
+  transform:scale(1.15);
 }
 
 .music-controls{
@@ -135,13 +142,16 @@ button,
   background:#d9f0ff;
   font-size:18px;
   padding:8px 10px;
-  cursor:pointer;
 }
 
 #bgVolume{
   width:100px;
   margin:0;
   touch-action:pan-x;
+}
+
+.music-btn:hover{
+  transform:scale(1.15);
 }
 
 /* ===== Layout ===== */
@@ -182,6 +192,10 @@ button,
   vertical-align:middle;
 }
 
+.key:hover{
+  transform:scale(1.8);
+}
+
 /* ===== Maze card ===== */
 .maze-card{
   width:min(940px, 95vw);
@@ -196,6 +210,10 @@ button,
   padding:10px;
   margin-bottom:12px;
   text-align:center;
+}
+
+.maze-header:hover{
+  transform:scale(1.06);
 }
 
 .maze-title{
@@ -282,7 +300,6 @@ button,
   border:3px solid var(--border);
   background:var(--panel2);
   font-weight:900;
-  cursor:pointer;
 }
 
 .ctrl-action{
@@ -323,7 +340,6 @@ button,
   border:3px solid var(--border);
   background:#ff6666;
   font-weight:900;
-  cursor:pointer;
   padding:4px 8px;
 }
 
@@ -449,6 +465,7 @@ animation:keyPulse 0.25s ease;
     padding:6px 8px;
   }
 
+
   #bgVolume{
     width:76px;
   }
@@ -539,4 +556,40 @@ animation:keyPulse 0.25s ease;
   #bgVolume{
     width:68px;
   }
+}
+
+html,
+body,
+a,
+button,
+input,
+select,
+textarea,
+label,
+summary,
+[role="button"],
+.ctrl-btn,
+.key,
+.music-btn,
+.envelope-btn,
+.tile {
+  cursor: url("../img/scope.cur") 16 16, auto !important;
+}
+
+html:hover,
+body:hover,
+a:hover,
+button:hover,
+input:hover,
+select:hover,
+textarea:hover,
+label:hover,
+summary:hover,
+[role="button"]:hover,
+.ctrl-btn:hover,
+.key:hover,
+.music-btn:hover,
+.envelope-btn:hover,
+.tile:hover {
+  cursor: url("../img/scope.cur") 16 16, auto !important;
 }

@@ -25,13 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const envelopeBtn = document.getElementById("envelopeBtn");
 
   const memories = {
-    m1: { type: "video", src: "media/memory01.mp4", caption: "Dad's B-Day surprise" },
-    m2: { type: "video", src: "media/memory02.mp4", caption: "New Orleans Trip" },
-    m3: { type: "video", src: "media/memory03.mp4", caption: "Throwback" },
+    m1: { type: "video", src: "media/memory01.mp4", caption: "Dad's B-Day surprise 2024" },
+    m2: { type: "video", src: "media/memory02.mp4", caption: "Mirror MAZEEE" },
+    m3: { type: "video", src: "media/memory03.mp4", caption: "Throwback of the Zoo" },
     m4: { type: "video", src: "media/memory04.mp4", caption: "Beautiful days" },
-    m5: { type: "video", src: "media/memory05.mp4", caption: "HI DAD" },
-    m6: { type: "video", src: "media/memory06.mp4", caption: "Good memories" },
-    m7: { type: "video", src: "media/memory07.mp4", caption: "Love from us" }
+    m5: { type: "video", src: "media/memory05.mp4", caption: "B-Day 2024 memories" },
+    m6: { type: "video", src: "media/memory06.mp4", caption: "HI DADDDD" },
+    m7: { type: "video", src: "media/memory07.mp4", caption: "New Orleans Trip of 2025" }
   };
 
   const map = [
