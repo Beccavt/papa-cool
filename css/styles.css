@@ -96,6 +96,8 @@ body{
 
 .music-btn{
   position: absolute;
+  top: 10px;
+
 
   /* place under envelope */
   top: 110px;
@@ -106,6 +108,12 @@ body{
   font-size:20px;
   padding:10px 12px;
   cursor:pointer;
+}
+
+#bgVolume{
+  position: relative;
+  top: 11px;
+  z-index: 9999;
 }
 
 /* Envelope button (top right) */

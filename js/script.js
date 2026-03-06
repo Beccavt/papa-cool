@@ -12,57 +12,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const sfxEnvelope = document.getElementById("sfxEnvelope");
   const sfxWin = document.getElementById("sfxWin");
 
-  // volume
-  function setVolumes(){
-  if (bgMusic) bgMusic.volume = 0.01;
-  if (letterMusic) letterMusic.volume = 0.04;
-
-  if (sfxMove) sfxMove.volume = 0.48;
-  if (sfxOpen) sfxOpen.volume = 0.32;
-  if (sfxEnvelope) sfxEnvelope.volume = 0.48;
-  if (sfxWin) sfxWin.volume = 0.48;
-}
 document.addEventListener("DOMContentLoaded", () => {
-
-// start music after first click (iphone safe)
 function startBG(){
-  setVolumes();
 
-  // iPhone helpers (safe + harmless on desktop)
-  if (bgMusic){
+    if(!bgMusic) return;
+
+    // set volumes AFTER interaction
+    bgMusic.volume = 0.01;
+    if(letterMusic) letterMusic.volume = 0.04;
+
+    if(sfxMove) sfxMove.volume = 0.48;
+    if(sfxOpen) sfxOpen.volume = 0.32;
+    if(sfxEnvelope) sfxEnvelope.volume = 0.48;
+    if(sfxWin) sfxWin.volume = 0.48;
+
+    // unlock + play
     bgMusic.muted = false;
     bgMusic.playsInline = true;
-  }
-  if (letterMusic){
-    letterMusic.muted = false;
-    letterMusic.playsInline = true;
-  }
 
-  safePlay(bgMusic);
-}
+    bgMusic.play().catch(()=>{});
+
+    if(musicBtn) musicBtn.textContent = "🔊";
+
+  }
+ 
 
 // pointerdown works for mouse + touch
 window.addEventListener("pointerdown", startBG, { once: true });
 
-// EXTRA safety for older iOS Safari (optional but recommended)
+// EXTRA safety for older iOS Safari
 window.addEventListener("touchstart", startBG, { once: true, passive: true });
 });
 
-  // music toggle
-  if(musicBtn){
-    musicBtn.addEventListener("click", () => {
+// music toggle
+if(musicBtn){
+  musicBtn.addEventListener("click", () => {
 
-      if(bgMusic && bgMusic.paused){
-        safePlay(bgMusic);
-        musicBtn.textContent = "🔊";
-      }else{
-        if(bgMusic) bgMusic.pause();
-        if(letterMusic) letterMusic.pause();
-        musicBtn.textContent = "🔈";
-      }
+    if(bgMusic && bgMusic.paused){
+      safePlay(bgMusic);
+      musicBtn.textContent = "🔊";
+    }else{
+      if(bgMusic) bgMusic.pause();
+      if(letterMusic) letterMusic.pause();
+      musicBtn.textContent = "🔈";
+    }
+    const bgVolume = document.getElementById("bgVolume");
 
-    });
-  }
+    
+    
+    
+    if(bgVolume && bgMusic){
+      bgVolume.addEventListener("input", () => {
+        bgMusic.volume = bgVolume.value;
+      });
+    }
+
+  });
+}
+
+
 
   const modalBackdrop = document.getElementById("modalBackdrop");
   const memoryModal = document.getElementById("memoryModal");
