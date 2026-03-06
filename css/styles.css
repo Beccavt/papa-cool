@@ -436,3 +436,13 @@ body{
     --gap: 4px;
   }
 }
+
+/* mobile only */
+@media (max-width: 600px) {
+  #bgVolume{
+    position: relative;
+    top: 15px;
+    left: 40px;
+    width: 110px;
+  }
+}
