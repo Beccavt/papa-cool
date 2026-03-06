@@ -42,6 +42,7 @@ body{
   background: var(--panel);
   border-bottom: 3px solid var(--border);
   padding: 10px;
+  position: relative;
 }
 
 .brand{
@@ -70,17 +71,8 @@ body{
 
   /* move title slightly left */
   margin-right:150px;
-
-  /* iPhone / small screens fix */
-@media (max-width:650px){
-
-  .title-box{
-    margin-right:0;
-    width:100%;
-  }
-
 }
-}
+
 
 .site-title{
   margin: 0;
@@ -111,9 +103,11 @@ body{
 }
 
 #bgVolume{
+  width: 140px;
+  margin: 0;
   position: relative;
-  top: 11px;
-  z-index: 9999;
+  z-index: 30;
+  touch-action: pan-x;      /* ✅ helps iPhone slider drag */
 }
 
 .music-controls{
@@ -123,11 +117,6 @@ body{
   gap:12px;
   margin:10px auto;
   width: 100%;
-}
-
-#bgVolume{
-  display:block;
-  margin:10px auto;
 }
 
 /* Envelope button (top right) */
@@ -276,9 +265,7 @@ body{
 
   pointer-events:none;
 
-  transform:translate(-50%, -50%);
-
-  
+  transform:translate(-50%, -50%); 
 }
 
 /* Mobile controls: show only on small screens */
@@ -460,4 +447,11 @@ body{
     gap:12px;
   }
 
+}
+
+@media (max-width:650px){
+  .title-box{
+    margin-right:0;
+    width:100%;
+  }
 }
