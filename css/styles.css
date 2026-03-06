@@ -85,7 +85,7 @@ body{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  gap:12px;
 }
 
 .envelope-btn{
@@ -113,6 +113,7 @@ body{
   justify-content:center;
   gap:6px;
   width:100%;
+  margin-top: 8px;
 }
 
 .music-btn{
