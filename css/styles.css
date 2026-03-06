@@ -449,3 +449,13 @@ body{
   }
 }
 
+@media (max-width:600px){
+
+  .music-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+  }
+
+}
