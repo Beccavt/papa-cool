@@ -13,68 +13,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const sfxWin = document.getElementById("sfxWin");
 
 document.addEventListener("DOMContentLoaded", () => {
-function startBG(){
 
+  const board = document.getElementById("board");
+  const avatar = document.getElementById("avatar");
+
+  const musicBtn = document.getElementById("musicBtn");
+  const bgMusic = document.getElementById("bgMusic");
+  const letterMusic = document.getElementById("letterMusic");
+  const bgVolume = document.getElementById("bgVolume");
+
+  const sfxMove = document.getElementById("sfxMove");
+  const sfxOpen = document.getElementById("sfxOpen");
+  const sfxEnvelope = document.getElementById("sfxEnvelope");
+  const sfxWin = document.getElementById("sfxWin");
+
+  function safePlay(a){
+    if(!a) return;
+    const p = a.play();
+    if(p && p.catch) p.catch(() => {});
+  }
+
+  function startBG(){
     if(!bgMusic) return;
 
-    // set volumes AFTER interaction
-    bgMusic.volume = 0.01;
-    if(letterMusic) letterMusic.volume = 0.04;
+    bgMusic.muted = false;
+    bgMusic.volume = 0.05;
+    bgMusic.playsInline = true;
 
+    if(letterMusic) letterMusic.volume = 0.04;
     if(sfxMove) sfxMove.volume = 0.48;
     if(sfxOpen) sfxOpen.volume = 0.32;
     if(sfxEnvelope) sfxEnvelope.volume = 0.48;
     if(sfxWin) sfxWin.volume = 0.48;
 
-    // unlock + play
-    bgMusic.muted = false;
-    bgMusic.playsInline = true;
-
-    bgMusic.play().catch(()=>{});
+    safePlay(bgMusic);
 
     if(musicBtn) musicBtn.textContent = "🔊";
-
   }
- 
 
-// pointerdown works for mouse + touch
-window.addEventListener("pointerdown", startBG, { once: true });
+  window.addEventListener("pointerdown", startBG, { once: true });
+  window.addEventListener("touchstart", startBG, { once: true, passive: true });
 
-// EXTRA safety for older iOS Safari
-window.addEventListener("touchstart", startBG, { once: true, passive: true });
+  if(musicBtn){
+    musicBtn.addEventListener("click", () => {
+      if(bgMusic && bgMusic.paused){
+        safePlay(bgMusic);
+        musicBtn.textContent = "🔊";
+      } else {
+        if(bgMusic) bgMusic.pause();
+        if(letterMusic) letterMusic.pause();
+        musicBtn.textContent = "🔈";
+      }
+    });
+  }
+
+  if(bgVolume && bgMusic){
+    bgVolume.addEventListener("input", () => {
+      bgMusic.volume = parseFloat(bgVolume.value);
+    });
+  }
+
+  // keep the rest of your game code below this...
 });
-
-// music toggle
-if(musicBtn){
-  musicBtn.addEventListener("click", () => {
-
-    if(bgMusic && bgMusic.paused){
-      safePlay(bgMusic);
-      musicBtn.textContent = "🔊";
-    }else{
-      if(bgMusic) bgMusic.pause();
-      if(letterMusic) letterMusic.pause();
-      musicBtn.textContent = "🔈";
-    }
-  });
-}
-const bgVolume = document.getElementById("bgVolume");
-
-if (bgVolume && bgMusic) {
-  bgMusic.volume = parseFloat(bgVolume.value) || 0.05;
-
-  bgVolume.addEventListener("input", () => {
-    const v = parseFloat(bgVolume.value);
-    bgMusic.volume = v;
-
-    // helps mobile browsers notice the change
-    if (!bgMusic.paused) {
-      bgMusic.pause();
-      bgMusic.play().catch(() => {});
-    }
-  });
-}
-
 
 
   const modalBackdrop = document.getElementById("modalBackdrop");
