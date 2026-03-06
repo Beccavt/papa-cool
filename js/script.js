@@ -60,22 +60,19 @@ if(musicBtn){
 }
 const bgVolume = document.getElementById("bgVolume");
 
-    if(bgVolume && bgMusic){
+if (bgVolume && bgMusic) {
+  bgMusic.volume = parseFloat(bgVolume.value) || 0.05;
 
-    bgMusic.volume = 0.05;
+  bgVolume.addEventListener("input", () => {
+    const v = parseFloat(bgVolume.value);
+    bgMusic.volume = v;
 
-    bgVolume.addEventListener("input", () => {
-
-  const v = parseFloat(bgVolume.value);
-  bgMusic.volume = v;
-
-  // forces iPhone to apply the volume
-  if(!bgMusic.paused){
-    bgMusic.pause();
-    bgMusic.play().catch(()=>{});
-  }
-
-});
+    // helps mobile browsers notice the change
+    if (!bgMusic.paused) {
+      bgMusic.pause();
+      bgMusic.play().catch(() => {});
+    }
+  });
 }
 
 
