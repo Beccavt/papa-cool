@@ -56,17 +56,13 @@ if(musicBtn){
       if(letterMusic) letterMusic.pause();
       musicBtn.textContent = "🔈";
     }
-    const bgVolume = document.getElementById("bgVolume");
+  });
+}
+const bgVolume = document.getElementById("bgVolume");
 
-    
-    
-    
     if(bgVolume && bgMusic){
-      bgVolume.addEventListener("input", () => {
-        bgMusic.volume = bgVolume.value;
-      });
-    }
-
+    bgVolume.addEventListener("input", () => {
+    bgMusic.volume = parseFloat(bgVolume.value);
   });
 }
 
